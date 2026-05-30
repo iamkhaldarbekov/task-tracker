@@ -1,5 +1,5 @@
 Простой таск-трекер на PHP.
 
 Данные для входа:
-login: admin
-pass: 123
+- login: admin
+- pass: 123
