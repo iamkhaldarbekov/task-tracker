@@ -12,9 +12,7 @@ function isGuest(): bool {
 function getTasks(): array {
 	$tasks = json_decode(file_get_contents('storage.txt'), true);
 
-	if (!is_array($tasks) || count($tasks) < 1) {
-		return [];
-	}
+	if (!is_array($tasks)) return [];
 
 	return $tasks;
 }
