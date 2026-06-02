@@ -9,7 +9,7 @@ $foundTask = null;
 if (isset($_GET["id"])) {
 	$id = $_GET["id"];
 
-	foreach ($_SESSION["tasks"] as $task) {
+	foreach (getTasks() as $task) {
 		if ($task["id"] == $id) {
 			$foundTask = $task;
 			break;
@@ -19,10 +19,15 @@ if (isset($_GET["id"])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (isset($_POST["status"])) {
-		foreach ($_SESSION["tasks"] as $key => $value) {
-			if ($value["id"] == $foundTask["id"]) {
-				$_SESSION["tasks"][$key]["done"] = !$_SESSION["tasks"][$key]["done"];
+		$tasks = getTasks();
 
+		foreach ($tasks as &$task) {
+			if ($task["id"] == $foundTask["id"]) {
+				$task["done"] = !$task["done"];
+
+				unset($task);
+
+				file_put_contents('storage.txt', json_encode($tasks));
 				redirect("index.php?page=task&id=" . $foundTask["id"]);
 			}
 		}
@@ -33,11 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 	if (isset($_POST["delete"])) {
-		foreach ($_SESSION["tasks"] as $key => $value) {
-			if ($value["id"] == $foundTask["id"]) {
-				unset($_SESSION["tasks"][$key]);
-				$_SESSION["tasks"] = array_values($_SESSION["tasks"]);
+		$tasks = getTasks();
 
+		foreach ($tasks as $key => $value) {
+			if ($value["id"] == $foundTask["id"]) {
+				unset($tasks[$key]);
+				$tasks = array_values($tasks);
+
+				file_put_contents('storage.txt', json_encode($tasks));
 				redirect("index.php?page=tasks");
 			}
 		}

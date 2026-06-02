@@ -4,7 +4,7 @@ $doneTasks = 0;
 $notDoneTasks = 0;
 
 if (!isGuest()) {
-	foreach ($_SESSION["tasks"] as $task) {
+	foreach (getTasks() as $task) {
 		$task["done"] ? $doneTasks++ : $notDoneTasks++;
 	}
 }

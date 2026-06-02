@@ -10,7 +10,7 @@ $error = "";
 if (isset($_GET["id"])) {
 	$id = $_GET["id"];
 
-	foreach ($_SESSION["tasks"] as $task) {
+	foreach (getTasks() as $task) {
 		if ($task["id"] == $id) {
 			$foundTask = $task;
 			break;
@@ -23,12 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$description = trim($_POST["description"]);
 
 	if ($title && $description) {
-		foreach ($_SESSION["tasks"] as &$task) {
+		$tasks = getTasks();
+
+		foreach ($tasks as &$task) {
 			if ($task["id"] == $foundTask["id"]) {
 				$task["title"] = $title;
 				$task["description"] = $description;
 
 				unset($task);
+
+				file_put_contents('storage.txt', json_encode($tasks));
 				redirect("index.php?page=task&id=" . $foundTask["id"]);
 			}
 		}

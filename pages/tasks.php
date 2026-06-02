@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $doneTasks = [];
 $notDoneTasks = [];
 
-foreach ($_SESSION["tasks"] as $task) {
+foreach (getTasks() as $task) {
 	$task["done"] ? $doneTasks[] = $task : $notDoneTasks[] = $task;
 }
 

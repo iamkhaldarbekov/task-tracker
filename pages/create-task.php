@@ -11,12 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$description = trim($_POST["description"]);
 
 	if ($title && $description) {
-		$_SESSION["tasks"][] = [
+		$task = [
 			"id" => uniqid(),
 			"title" => $title,
 			"description" => $description,
 			"done" => false
 		];
+
+		$tasks = getTasks();
+		$tasks[] = $task;
+		file_put_contents('storage.txt', json_encode($tasks));
 
 		redirect("index.php?page=tasks");
 	}

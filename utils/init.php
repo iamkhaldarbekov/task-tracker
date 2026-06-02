@@ -2,6 +2,9 @@
 
 session_start();
 
-require_once 'functions.php';
+if (!file_exists('storage.txt')) {
+	$file = fopen('storage.txt', "w");
+	fclose($file);
+}
 
-tasksFactory();
+require_once 'functions.php';
