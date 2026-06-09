@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			"id" => uniqid(),
 			"title" => $title,
 			"description" => $description,
+			"deadline" => $_POST["deadline"],
 			"done" => false
 		];
 
@@ -38,11 +39,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			type="text"
 			name="title"
 			placeholder="Заголовок"
+			required
 		/>
 		<input
 			type="text"
 			name="description"
 			placeholder="Описание"
+			required
+		/>
+		<input
+			type="date"
+			name="deadline"
+			required
 		/>
 		<button>Создать задачу</button>
 	</form>

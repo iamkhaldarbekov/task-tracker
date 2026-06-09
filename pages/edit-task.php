@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if ($task["id"] == $foundTask["id"]) {
 				$task["title"] = $title;
 				$task["description"] = $description;
+				$task["deadline"] = $_POST["deadline"];
 
 				unset($task);
 
@@ -52,12 +53,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			name="title"
 			placeholder="Заголовок"
 			value="<?= $foundTask["title"] ?>"
+			required
 		/>
 		<input
 			type="text"
 			name="description"
 			placeholder="Описание"
 			value="<?= $foundTask["description"] ?>"
+			required
+		/>
+		<input
+			type="date"
+			name="deadline"
+			value="<?= $foundTask["deadline"] ?>"
+			required
 		/>
 		<button>Сохранить</button>
 	</form>

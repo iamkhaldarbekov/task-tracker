@@ -73,6 +73,19 @@ if (!$foundTask) {
 		<span><?= $foundTask["done"] ? "Выполнена" : "Не выполнена" ?></span>
 	</div>
 
+	<?php if (!$foundTask["done"]): ?>
+		<div>
+			<b>Срок:</b>
+			<span>
+				<?php
+					$deadline = explode("-", $foundTask["deadline"]);
+
+					echo "$deadline[2].$deadline[1].$deadline[0]";
+				?>
+			</span>
+		</div>
+	<?php endif; ?>
+
 	<br>
 
 	<div>
