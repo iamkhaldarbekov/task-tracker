@@ -30,11 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			type="text"
 			name="login"
 			placeholder="Логин"
+			required
 		/>
 		<input
 			type="password"
 			name="pass"
 			placeholder="Пароль"
+			required
 		/>
 		<button>Войти</button>
 	</form>
