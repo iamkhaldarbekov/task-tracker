@@ -1,9 +1,5 @@
 <?php
 
-if (isGuest()) {
-	redirect("index.php");
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	redirect("index.php?page=create-task");
 }

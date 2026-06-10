@@ -1,9 +1,5 @@
 <?php
 
-if (!isGuest()) {
-	redirect("index.php");
-}
-
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -16,3 +16,19 @@ function getTasks(): array {
 
 	return $tasks;
 }
+
+function routeValidation(string $path): void {
+	$notAuthRoutes = [
+		"login"
+	];
+
+	$authRoutes = [
+		"create-task",
+		"edit-task",
+		"task",
+		"tasks"
+	];
+
+	if (!isGuest() && in_array($path, $notAuthRoutes)) redirect("index.php");
+	if (isGuest() && in_array($path, $authRoutes)) redirect("index.php");
+}

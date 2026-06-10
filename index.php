@@ -4,6 +4,8 @@ require_once 'utils/init.php';
 
 $page = $_GET["page"] ?? "home";
 
+routeValidation($page);
+
 require_once "containers/header.php";
 require_once "pages/$page.php";
 require_once "containers/footer.php";

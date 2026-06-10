@@ -1,9 +1,5 @@
 <?php
 
-if (isGuest()) {
-	redirect("index.php");
-}
-
 $foundTask = null;
 
 if (isset($_GET["id"])) {
