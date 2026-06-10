@@ -15,6 +15,10 @@ foreach (getTasks() as $task) {
 	$task["done"] ? $doneTasks[] = $task : $notDoneTasks[] = $task;
 }
 
+usort($notDoneTasks, function($a, $b) {
+	return $a["deadline"] <=> $b["deadline"];
+});
+
 ?>
 
 <main>
